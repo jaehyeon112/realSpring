@@ -27,7 +27,10 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 	  <property name="dataSource" ref="dataSource"/>
 	  <property name="configLocation" value="classpath:mybatis-config.xml"/>
-	  <!-- mapperLocation 얘가 있으면 한번더 확인이 필요하다-->
+	  <!-- mapperLocation 얘가 있으면 한번더 확인이 필요하다 (xml파일은 해당경로로 들어가야한다.)
+	  만약 classpath가 이렇다면 resources/mapper 안에 xml을 만들어야...
+	  <property name="mapperLocations" value="*classpath:mapper/*.xml"/>
+	  -->
 	</bean>
 	
 	<!-- mapper scan -->
