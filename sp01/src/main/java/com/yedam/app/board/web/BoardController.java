@@ -1,6 +1,5 @@
 package com.yedam.app.board.web;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.app.board.service.BoardService;
@@ -55,15 +56,24 @@ public class BoardController {
 	// 수정 - 페이지 : URI - boardUpdate / PARAMETER - BoardVO
 	//				/ RETURN - board/boardUpdate
 	@GetMapping("boardUpdate")
-	public String updateBoardInfoForm(BoardVO boardVO) {
+	public String boardUpdateInfo(Model model, BoardVO boardVO) {
+		BoardVO vo = boardService.getBoardInfo(boardVO);
+		model.addAttribute("boardInfo", vo);
 		return "board/boardUpdate";
 	}
 	
 	// 수정 - 처리 : URI - boardUpdate / PARAMETER - BoardVO
-	//				/ RETURN - 수정결과 데이터(Map)
+	//				/ RETURN - 수정결과 데이터(Map) => ajax
 	@PostMapping("boardUpdate")
 	@ResponseBody
-	public Map<String, Object> updateBoardInfoProcess(BoardVO boardVO) {
+	public Map<String, Object> updateBoardInfoProcess(@RequestBody BoardVO boardVO, Model model) {
 		return boardService.updateBoardInfo(boardVO);
+	}
+	
+	@GetMapping("boardDelete")
+	public String boardDelete(@RequestParam Integer bno) {
+		boardService.deleteBoardInfo(bno);
+		return "redirect:boardList";
+		
 	}
 }

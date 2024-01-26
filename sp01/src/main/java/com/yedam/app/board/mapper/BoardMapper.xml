@@ -63,7 +63,7 @@
 	 			title = #{title}
 	 		  , contents = #{contents}
 	 		  , writer = #{writer}
-	 		  , updateDate = #{updateDate}
+	 		  , updateDate = sysdate
 	 		  , image = #{image}
 	 	WHERE bno = #{bno}
 	 </update>

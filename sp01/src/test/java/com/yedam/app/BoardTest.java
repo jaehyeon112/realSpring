@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yedam.app.aop.service.AaaService;
 import com.yedam.app.board.mapper.BoardMapper;
 import com.yedam.app.board.service.BoardVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/*-context.xml")
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class BoardTest {
 	
 	@Autowired
@@ -28,7 +29,7 @@ public class BoardTest {
 		assertTrue(!list.isEmpty());
 	}
 	
-	@Test
+	//@Test
 	public void insert() {
 		BoardVO vo = new BoardVO();
 		vo.setBno(100);
@@ -40,4 +41,13 @@ public class BoardTest {
 		int result = boardMapper.insertBoard(vo);
 		assertNotEquals(result, 0);
 	}
+	
+	@Autowired
+	AaaService aaaService;
+	
+	@Test
+	public void aopTest() {
+		aaaService.insert();
+	}
+	
 }

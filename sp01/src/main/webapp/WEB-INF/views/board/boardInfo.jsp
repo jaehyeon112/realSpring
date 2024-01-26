@@ -23,13 +23,13 @@
 			</tr>
 			<tr>
 				<th>이미지</th> <!-- app.jpg -->
-				<td><img src="<c:url value="/resources/${boardInfo.image }"/>"></td>
+				<td><img style="width:200px" src="<c:url value="/resources/${boardInfo.image }"/>"></td>
 			</tr>
 			<tr>
 				<th>작성날짜</th> <!-- app.jpg -->
 				<td>${boardInfo.regdate }</td>
 			</tr>
 		</table>
-		<button type="">수정</button>
-		<button type="">삭제</button>
+		<button type="button" onclick="location.href='boardUpdate?bno=${boardInfo.bno}'" >수정</button>
+		<button type="button" onclick="location.href='boardDelete?bno=${boardInfo.bno}'" >삭제</button>
 </div>
